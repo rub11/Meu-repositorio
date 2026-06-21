@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Júlio Silva | Portfólio Web Developer</title>
+    <!-- Font Awesome (Ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts (Montserrat + Inter) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ========== RESET E VARIÁVEIS ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0d0d0d;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #222222;
+            --accent: #8B0000;
+            --accent-hover: #B22222;
+            --accent-glow: rgba(139, 0, 0, 0.4);
+            --text-primary: #F5F5DC;
+            --text-secondary: #d4cfb8;
+            --text-muted: #a09b84;
+            --border-light: rgba(245, 245, 220, 0.08);
+            --font-body: 'Inter', sans-serif;
+            --font-title: 'Montserrat', sans-serif;
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --radius: 12px;
+            --transition: 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* ========== TIPOGRAFIA ========== */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-title);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+            margin-bottom: 16px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 48px;
+            margin-top: 16px;
+            max-width: 600px;
+        }
+
+        .text-accent {
+            color: var(--accent-hover);
+        }
+
+        /* ========== HEADER / NAVEGAÇÃO ========== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(13, 13, 13, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 0;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.04em;
+        }
+
+        .logo span {
+            color: var(--accent-hover);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            transition: var(--transition);
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0%;
+            height: 2px;
+            background: var(--accent-hover);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* ========== HERO ========== */
+        #home {
+            padding-top: 160px;
+            padding-bottom: 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-avatar {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, var(--bg-secondary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            box-shadow: 0 0 60px var(--accent-glow);
+            border: 3px solid var(--accent-hover);
+            position: relative;
+        }
+
+        .hero-avatar i {
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.15);
+            position: absolute;
+        }
+
+        .hero-avatar span {
+            z-index: 2;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--accent-hover);
+            margin-bottom: 16px;
+            min-height: 3rem;
+        }
+
+        .hero-content .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.6rem;
+            background: var(--accent-hover);
+            margin-left: 4px;
+            vertical-align: text-bottom;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin-bottom: 32px;
+        }
+
+        .hero-contacts {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-contacts a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .hero-contacts a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+
+        .hero-contacts a i {
+            font-size: 1.2rem;
+        }
+
+        /* ========== SOBRE ========== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-top: 16px;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .about-highlights .badge {
+            background: var(--bg-card);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-left: 3px solid var(--accent-hover);
+            color: var(--text-secondary);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .stat-card .number {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--accent-hover);
+            font-family: var(--font-title);
+        }
+
+        .stat-card .label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== METODOLOGIA ========== */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            padding: 32px 24px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-card .step-num {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--accent);
+            opacity: 0.25;
+            font-family: var(--font-title);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .step-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ========== PORTFÓLIO ========== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .project-card .project-img {
+            height: 180px;
+            background: linear-gradient(145deg, var(--bg-secondary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: rgba(255, 255, 255, 0.2);
+            font-weight: 800;
+        }
+
+        .project-card .project-body {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card .project-body h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .project-card .project-body .tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 16px;
+        }
+
+        .project-card .project-body .tech span {
+            background: rgba(139, 0, 0, 0.25);
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+        }
+
+        .project-card .project-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: transparent;
+            border: 1px solid var(--accent-hover);
+            color: var(--text-primary);
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            align-self: flex-start;
+            margin-top: 16px;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ========== OUTROS TRABALHOS ========== */
+        .other-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .other-item {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-light);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .other-item:hover {
+            border-color: var(--accent);
+        }
+
+        .other-item i {
+            font-size: 2rem;
+            color: var(--accent-hover);
+            margin-bottom: 8px;
+        }
+
+        .other-item h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .other-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== CONTATO / COLABORAÇÃO ========== */
+        #contato {
+            padding-bottom: 60px;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-top: 20px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 440px;
+            margin-bottom: 32px;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-list a {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 20px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .contact-list a:hover {
+            border-color: var(--accent);
+            background: var(--bg-secondary);
+            transform: translateX(8px);
+        }
+
+        .contact-list a i {
+            width: 24px;
+            color: var(--accent-hover);
+            font-size: 1.2rem;
+        }
+
+        .qr-placeholder {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            border: 1px dashed var(--border-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .qr-placeholder i {
+            font-size: 5rem;
+            color: var(--accent-hover);
+            opacity: 0.6;
+        }
+
+        .qr-placeholder p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ========== MODAL ========== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 1px solid var(--accent);
+            position: relative;
+            animation: modalFade 0.3s ease;
+        }
+
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        .modal-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .modal-content h2::after {
+            width: 40px;
+        }
+
+        .modal-content .modal-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 16px;
+        }
+
+        .modal-content .modal-tech span {
+            background: rgba(139, 0, 0, 0.25);
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+        }
+
+        .modal-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--bg-secondary);
+            padding: 32px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer span {
+            color: var(--accent-hover);
+        }
+
+        /* ========== RESPONSIVIDADE ========== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-contacts {
+                justify-content: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-primary);
+                flex-direction: column;
+                align-items: center;
+                padding: 32px 0;
+                gap: 24px;
+                border-bottom: 1px solid var(--border-light);
+                transform: translateY(-120%);
+                transition: var(--transition);
+                opacity: 0;
+                backdrop-filter: blur(12px);
+                background: rgba(13, 13, 13, 0.98);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-avatar {
+                width: 200px;
+                height: 200px;
+                font-size: 3rem;
+            }
+
+            .hero-avatar i {
+                font-size: 5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .other-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .modal-content {
+                padding: 28px;
+                margin: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-contacts a {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-avatar {
+                width: 160px;
+                height: 160px;
+                font-size: 2.2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        img {
+            width: auto;
+            height: auto;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+    </style>
+    
+    
+</head>
+
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Júlio da silva<span> Portifolio</span></div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#metodologia">Metodologia</a></li>
+                <li><a href="#portfolio">Portfólio</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ========== HOME / HERO ========== -->
+    <section id="home">
+        <div class="container hero-grid">
+            <div class="hero-image">
+                <div class="hero-avatar">
+
+                    <img src="img/minha_imagem.jpeg" alt="">
+                </div>
+            </div>
+            <div class="hero-content">
+                <h1>Júlio da Silva Pinto</h1>
+                <div class="subtitle">
+                    <span id="typed-text"></span><span class="cursor"></span>
+                </div>
+                <p>
+                    Biritiba Mirim, SP • Em transição para o desenvolvimento web, unindo experiência em logística e
+                    análise de dados à paixão por programação.
+                </p>
+                <div class="hero-contacts">
+                    <a href="https://wa.me/5511974793895" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="https://linkedin.com/in/julio-da-silva08438" target="_blank"><i
+                            class="fab fa-linkedin-in"></i> LinkedIn</a>
+                    <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="mailto:juliodasilva0101@gmail.com"><i class="fas fa-envelope"></i> E-mail</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SOBRE ========== -->
+    <section id="sobre">
+        <div class="container">
+            <h2>Quem Sou</h2>
+            <p class="section-subtitle">Da logística à programação — uma transição com propósito.</p>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        Comecei minha carreira na logística e administração, onde desenvolvi um olhar analítico para
+                        dados e processos.
+                        Atuei com controle de estoque, contas a pagar/receber, conciliação bancária e criação de
+                        dashboards com
+                        <strong>Excel e Power BI</strong>.
+                    </p>
+                    <p>
+                        Hoje, estou em transição ativa para o <strong>desenvolvimento web</strong>, unindo minha
+                        experiência prática
+                        com a paixão por programação. Sou <strong>autodidata</strong>, organizado e entusiasta por criar
+                        soluções digitais
+                        que resolvam problemas reais.
+                    </p>
+                    <div class="about-highlights">
+                        <span class="badge">📚 40+ cursos concluídos</span>
+                        <span class="badge">💻 HTML • CSS • JavaScript</span>
+                        <span class="badge">📊 Power BI • Excel • ERP Sankhya</span>
+                        <span class="badge">🔒 Cibersegurança • Marketing Digital</span>
+                        <span class="badge">🐘 PHP • Desenvolvimento Back-end</span>
+                        <span class="badge">🐍 Python • Automação</span>
+                        <span class="badge">🔀 Git • Controle de Versão</span>
+                        <span class="badge">🐙 GitHub • Repositórios</span>
+
+
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="number">5+</div>
+                        <div class="label">Anos de experiência em logística/administração</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">40+</div>
+                        <div class="label">Cursos realizados (programação, dados, web)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">2026 </div>
+                        <div class="label">Início da graduação em ADS</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">Full</div>
+                        <div class="label">Disponibilidade para Stack</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== METODOLOGIA ========== -->
+    <section id="metodologia">
+        <div class="container">
+            <h2>Metodologia de Desenvolvimento</h2>
+            <p class="section-subtitle">6 passos para transformar ideias em soluções digitais.</p>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">01</div>
+                    <h3>Descoberta</h3>
+                    <p>Entendimento profundo do problema, do público-alvo e dos objetivos do negócio.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">02</div>
+                    <h3>Briefing</h3>
+                    <p>Levantamento de requisitos funcionais, técnicos e definição de escopo inicial.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">03</div>
+                    <h3>Proposta</h3>
+                    <p>Definição da stack tecnológica, cronograma e entrega de uma proposta comercial clara.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">04</div>
+                    <h3>Aprovação</h3>
+                    <p>Alinhamento final com o cliente, ajustes no escopo e validação do plano de ação.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">05</div>
+                    <h3>Desenvolvimento</h3>
+                    <p>Codificação com HTML, CSS, JavaScript, versionamento com Git e entregas incrementais.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">06</div>
+                    <h3>Entrega</h3>
+                    <p>Deploy, testes de usabilidade, documentação e suporte pós-lançamento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PORTFÓLIO ========== -->
+    <section id="portfolio">
+        <div class="container">
+            <h2>Portfólio de Projetos</h2>
+            <p class="section-subtitle">Cases reais que unem análise de dados e desenvolvimento web.</p>
+            <div class="projects-grid">
+                <!-- Projeto 1 -->
+                <div class="project-card">
+                    <div class="project-img"><i class="fas fa-chart-pie"></i></div>
+                    <div class="project-body">
+                        <h3>Dashboard de Análise de Custos</h3>
+                        <div class="tech">
+                            <span>Power BI</span>
+                            <span>Excel</span>
+                            <span>DAX</span>
+                        </div>
+                        <p>Dashboard interativo para controle de contas a pagar/receber, reduzindo em 30% o tempo de
+                            fechamento mensal.</p>
+                        <a href="caminho/para/seu/arquivo/projeto1.pdf" class="btn-primary"
+                            download="Nome_do_Arquivo_Para_Download.pdf">
+                            Baixar Projeto
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Projeto 2 -->
+                <div class="project-card">
+                    <div class="project-img"><i class="fas fa-laptop-code"></i></div>
+                    <div class="project-body">
+                        <h3>Landing Page para Negócio Local</h3>
+                        <div class="tech">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <p>Página responsiva com formulário de contato e integração direta com WhatsApp para um comércio
+                            local.</p>
+                        <a href="caminho/para/seu/arquivo/projeto1.pdf" class="btn-primary"
+                            download="Nome_do_Arquivo_Para_Download.pdf">
+                            Baixar Projeto
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Projeto 3 -->
+                <div class="project-card">
+                    <div class="project-img"><i class="fas fa-boxes"></i></div>
+                    <div class="project-body">
+                        <h3>Controle de Inventário (em dev)</h3>
+                        <div class="tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>LocalStorage</span>
+                        </div>
+                        <p>Sistema web para gestão de estoque de materiais perecíveis, com alertas de validade e
+                            relatórios.</p>
+                        <a href="caminho/para/seu/arquivo/projeto1.pdf" class="btn-primary"
+                            download="Nome_do_Arquivo_Para_Download.pdf">
+                            Baixar Projeto
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Outros Trabalhos -->
+            <h3 style="margin-top: 60px; font-size: 1.6rem;">Outros Trabalhos</h3>
+            <p class="section-subtitle" style="margin-bottom: 24px;">Soluções que desenvolvi ao longo da minha
+                trajetória.</p>
+            <div class="other-grid">
+                <div class="other-item">
+                    <i class="fas fa-file-excel"></i>
+                    <h4>Planilhas Automatizadas</h4>
+                    <p>Macros em Excel para automação de relatórios operacionais.</p>
+                </div>
+                <div class="other-item">
+                    <i class="fas fa-file-alt"></i>
+                    <h4>Relatórios Gerenciais</h4>
+                    <p>Análises de custo e desempenho para tomada de decisão.</p>
+                </div>
+                <div class="other-item">
+                    <i class="fas fa-robot"></i>
+                    <h4>Scripts de Automação</h4>
+                    <p>Pequenos scripts em JavaScript para tarefas repetitivas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTATO / COLABORAÇÃO ========== -->
+    <section id="contato">
+        <div class="container">
+            <h2>Colaboração</h2>
+            <p class="section-subtitle">Vamos construir algo incrível juntos?</p>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Entre em contato</h3>
+                    <p>
+                        Estou aberto a projetos desafiadores, seja como desenvolvedor web, analista de dados
+                        ou em posições que unam essas duas áreas. Disponível para modelos <strong>presencial, híbrido ou
+                            remoto</strong>.
+                    </p>
+                    <div class="contact-list">
+                        <a href="https://wa.me/5511974793895" target="_blank">
+                            <i class="fab fa-whatsapp"></i> (11) 97479-3895
+                        </a>
+                        <a href="mailto:juliodasilva0101@gmail.com">
+                            <i class="fas fa-envelope"></i> juliodasilva0101@gmail.com
+                        </a>
+                        <a href="https://linkedin.com/in/julio-da-silva08438" target="_blank">
+                            <i class="fab fa-linkedin-in"></i> linkedin.com/in/julio-da-silva08438
+                        </a>
+                        <a href="https://github.com" target="_blank">
+                            <i class="fab fa-github"></i> GitHub (em construção)
+                        </a>
+                    </div>
+                </div>
+               
+                  
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MODAL ========== -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2 id="modalTitle">Título</h2>
+            <div class="modal-tech" id="modalTech"></div>
+            <p id="modalDesc">Descrição detalhada do projeto.</p>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <span>Júlio da Silva Pinto</span> •</p>
+        </div>
+    </footer>
+
+    <script>
+        // ========== DADOS DOS PROJETOS (para o Modal) ==========
+        const projectsData = {
+            1: {
+                title: 'Dashboard de Análise de Custos',
+                tech: ['Power BI', 'Excel', 'DAX', 'Power Query'],
+                desc: 'Este dashboard foi desenvolvido para o escritório de Antônio Tetsuya Myose, com o objetivo de centralizar e automatizar a análise de contas a pagar e receber. A solução integra dados de diferentes planilhas, aplica transformações com Power Query e exibe métricas de fluxo de caixa, inadimplência e custos operacionais. O resultado foi uma redução de 30% no tempo de fechamento mensal e maior precisão nas tomadas de decisão.'
+            },
+            2: {
+                title: 'Landing Page para Negócio Local',
+                tech: ['HTML5', 'CSS3', 'JavaScript', 'Git'],
+                desc: 'Landing page responsiva criada para um comércio local da região de Biritiba Mirim. O projeto inclui um formulário de contato funcional com validação em JavaScript, integração com WhatsApp para atendimento rápido e um design otimizado para conversão. O site foi versionado com Git e hospedado em servidor estático, garantindo performance e acessibilidade.'
+            },
+            3: {
+                title: 'Sistema de Controle de Inventário',
+                tech: ['HTML', 'CSS', 'JavaScript', 'LocalStorage'],
+                desc: 'Sistema web em desenvolvimento para gerenciamento de estoque de materiais perecíveis. As principais funcionalidades incluem: cadastro de produtos, registro de entradas e saídas, alertas automáticos de validade (com destaque visual), e geração de relatórios simples. O projeto utiliza LocalStorage para persistência dos dados no navegador, e tem como objetivo evoluir para um backend com Node.js e banco de dados.'
+            }
+        };
+
+        // ========== ELEMENTOS DO MODAL ==========
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalClose = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalTech = document.getElementById('modalTech');
+        const modalDesc = document.getElementById('modalDesc');
+
+        // Abrir modal
+        document.querySelectorAll('[data-project]').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                const id = this.dataset.project;
+                const project = projectsData[id];
+                if (project) {
+                    modalTitle.textContent = project.title;
+                    modalTech.innerHTML = project.tech.map(t => `<span>${t}</span>`).join('');
+                    modalDesc.textContent = project.desc;
+                    modalOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+
+        modalClose.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+
+        modalOverlay.addEventListener('click', function (e) {
+            if (e.target === this) {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', function () {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em um link (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // ========== EFEITO DE DIGITAÇÃO ==========
+        const phrases = ['Web Developer', 'Full Stack', 'Analista de Dados em transição'];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedElement = document.getElementById('typed-text');
+
+        function typeEffect() {
+            const currentPhrase = phrases[phraseIndex];
+            if (isDeleting) {
+                typedElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 60 : 120;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                speed = 1800; // pausa antes de deletar
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                speed = 400;
+            }
+
+            setTimeout(typeEffect, speed);
+        }
+
+        typeEffect();
+    </script>
+
+</body>
+
+</html>
